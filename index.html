@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hello!</title>
+
+    <!-- jquery for the ko plugin -->
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- momemnt for ko plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js"></script>
+
+    <!-- ko -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+
+    <!-- ko plugin -->
+    <script src="https://raw.githack.com/sensortower/daterangepicker/master/dist/daterangepicker.min.js"></script>
+
+    <!-- ko plugin css -->
+    <link
+      rel="stylesheet"
+      href="https://raw.githack.com/sensortower/daterangepicker/master/dist/daterangepicker.min.css"
+    />
+
+    <!-- bs3 -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      input {
+        position: fixed;
+        top: 25%;
+        left: 25%;
+
+        color: red;
+      }
+    </style>
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <input
+      data-bind="
+  daterangepicker: dateRange,
+  daterangepickerOptions: {
+    single: false,
+    periods: ['day'],
+    expanded: true
+  }
+"
+    />
+
+    <script>
+      var viewModel = {
+        dateRange: ko.observable([
+          moment().subtract(1, "month"),
+          moment(),
+          "day"
+        ]) // Not observable
+      };
+      ko.applyBindings(viewModel);
+    </script>
+
+    <style>
+      .daterangepicker ul.ranges {
+        display: none !important;
+      }
+      .daterangepicker .controls {
+        position: absolute;
+        top: 100%;
+        background: white;
+        width: 100%;
+        left: 0;
+        margin: 0 !important;
+        padding: 5px 15px;
+        display: flex;
+        display: -ms-flex;
+        justify-content: flex-end;
+        border-radius: 0 0 4px 4px;
+        border-top: none;
+        -webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+      }
+      .daterangepicker select{
+        margin: 0!important;
+      }
+      .daterangepicker .custom-range-inputs [type=text]{
+        display: none;
+      }
+    </style>
+  </body>
+</html>
